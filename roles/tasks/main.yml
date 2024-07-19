@@ -1,14 +1,24 @@
 ---
-- name: Extraer datos del tenista uno
-  copy:
-    dest: /vagrant/partido.txt
-    content: |
+# - name: Extraer datos del tenista uno
+#   copy:
+#     src: /Users/macmike/Downloads/Practica Final/partido.txt
+#     dest: /vagrant/partido.txt
+#     content: |
 
-      First Name: {{ first_name }}.
-      Last Name: {{ last_name }}.
-      City: {{ city }}.
-      id: {{ id }}.
-      Fecha: {{ lookup('pipe', 'date -u +"%Y-%m-%dT%H:%M:%SZ"') }}.
+#       First Name: {{ first_name }}.
+#       Last Name: {{ last_name }}.
+#       City: {{ city }}.
+#       id: {{ id }}.
+#       Fecha: {{ lookup('pipe', 'date -u +"%Y-%m-%dT%H:%M:%SZ"') }}.
+- name:
+  slurp:
+    src: "{{ source_file }}"
+  register: source_content
+
+- name:
+  copy:
+     dest: "{{ dest_file }}"
+     content: "{{ source_content.content | b64decode }}"    
 
 - name: Extraer campos de  JSON
   ansible.builtin.uri:

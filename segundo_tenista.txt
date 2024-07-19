@@ -1,0 +1,5 @@
+nombre: "Brain".
+apellido: "Kuphal".
+ciudad: "Lake Stan".
+id: "121".
+current_date: "2024-07-19"

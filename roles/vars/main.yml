@@ -1,0 +1,4 @@
+---
+id: "{{ lookup('file', 'partido_vars.yml') }}"
+
+

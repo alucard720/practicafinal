@@ -1,0 +1,55 @@
+---
+- hosts: all
+  become: true
+  tasks: 
+    - name: Install necessary packages
+      apt:
+        name: 
+          - python3-pip
+        update_cache: yes
+        state: present
+
+    - name: Install requests module
+      pip:
+        name: requests
+        executable: pip3
+
+    # - name: crear archivo vacio .txt
+    #   copy:
+    #     content: |
+    #     dest: /home/vagrant/segundo_tenista.txt
+    #     dest: /home/vagrant/partido.txt
+       
+
+    # - name: Extraer campos de  JSON
+    #   ansible.builtin.uri:
+    #     url: "{{server}}{{endpoint}}"
+    #     method: GET
+    #     status_code: 200
+    #     timeout: 30
+    #   register: result_response
+
+    # - name: 
+    #   debug:
+    #     msg: "{{ result_response.json | community.general.json_query('[0].first_name')  }}"
+
+    # - name: Extract fields from JSON response
+    #   set_fact:
+    #     first_name: "{{ (result.json.data | from_json)[0].first_name }}"
+    #     last_name: "{{ (result.json.data | from_json)[0].last_name }}"
+    #     city: "{{ (result.json.data | from_json)[0].city }}"
+    #     user_id: "{{ (result.json.data | from_json)[0].id }}"
+    #     current_date: "{{ ansible_date_time.date }}" 
+        
+  vars:
+    server: "https://random-data-api.com"
+    endpoint: "/api/users/random_user?size=1"
+    first_name: "Nadene"
+    last_name: "Bogisich"
+    city: "North Alexchester"
+   
+  roles:
+    - roles
+    
+
+

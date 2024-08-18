@@ -1,36 +1,33 @@
 ---
-- hosts: all
+- name: Trabajo de Practica Final (primera solucion)
+  hosts: all
   become: true
-  tasks: 
+  tasks:
     - name: Install necessary packages
-      apt:
-        name: 
+      ansible.builtin.apt:
+        name:
           - python3-pip
-        update_cache: yes
+        update_cache: true
         state: present
 
     - name: Install requests module
-      pip:
+      ansible.builtin.pip:
         name: requests
         executable: pip3
-    
-    - name: Leer el contenido del archivo partido.txt
-      set_fact:
-        partido_contenido: "{{lookup('file', 'partido.txt')}}"
-    
-    - name: Mostrar el contenido de archivo partido.txt
-      debug:
-        msg: "{{ partido_contenido }}"
 
- 
-   
   vars:
-    server: "https://random-data-api.com"
-    endpoint: "/api/users/random_user?size=1"
+    server: https://random-data-api.com
+    endpoint: /api/users/random_user?size=1
+    source_file2: partido_vars.yml
     source_file: partido.txt
-    dest_file: /vagrant/partido.txt
+    dest_file: /home/vagrant/partido.txt
+    dest_file2: /home/vagrant/segundo_tenista.txt
+    first_name: Aitor
+    last_name: Menta
+    city: Madrid
+
+  vars_files:
+    - "{{ source_file2 }}"
+
   roles:
     - roles
-    
-
-

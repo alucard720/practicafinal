@@ -1,4 +1,2 @@
 ---
-id: "{{ lookup('file', 'partido_vars.yml') }}"
-
-
+# id: "{{ lookup('file', 'partido_vars.yml') }}"

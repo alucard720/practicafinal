@@ -1,21 +1,21 @@
 
----
-- name: URI module demo
-  hosts: all
-  become: false
-  vars:
-    server: "https://random-data-api.com"
-    endpoint: "/api/users/random_user?size=1"
-  tasks:
-    - name: Get random user data
-      ansible.builtin.uri:
-        url: "{{ server }}{{ endpoint }}"
-        method: GET
-        status_code: 200
-        timeout: 30
-        return_content: yes
-      register: result
+# ---
+# - name: URI module demo
+#   hosts: all
+#   become: false
+#   vars:
+#     server: "https://random-data-api.com"
+#     endpoint: "/api/users/random_user?size=1"
+#   tasks:
+#     - name: Get random user data
+#       ansible.builtin.uri:
+#         url: "{{ server }}{{ endpoint }}"
+#         method: GET
+#         status_code: 200
+#         timeout: 30
+#         return_content: yes
+#       register: result
 
-    - name: Display the entire JSON response
-      ansible.builtin.debug:
-        var: result.json
+#     - name: Display the entire JSON response
+#       ansible.builtin.debug:
+#         var: result.json

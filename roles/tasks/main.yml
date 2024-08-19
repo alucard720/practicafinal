@@ -1,24 +1,19 @@
 ---
-- name: Leer contenido del archivo
-  ansible.builtin.slurp:
-    src: "{{ source_file }}"
-  register: partidofile
+- name: Leer contenido del archivo partido.txt
+  ansible.builtin.set_fact:
+    file_content: "{{ lookup('file', 'partido.txt') }}"
 
 - name: Copiar archivo
   ansible.builtin.copy:
-    dest: "{{ dest_file }}"
-    content: "{{ partidofile['content'] | b64decode }}"
+    src: partido.txt
+    dest: /home/vagrant/
+    owner: vagrant
+    group: vagrant
     mode: "0644"
 
-- name: Imprimir contenido del archivo partido.txt
+- name: Mostrar información del tenista partido.txt
   ansible.builtin.debug:
-    msg: |
-
-      First Name: {{ first_name }}
-      Last Name: {{ last_name }}
-      City: {{ city }}
-      ID: {{ id }}
-      Fecha: {{ lookup('pipe', 'date -u +"%Y-%m-%dT%H:%M:%SZ"') }}
+    msg: Tenista {{ first_name }} {{ last_name }} de {{ city }} con ID {{ id }}
 
 - name: Obtener datos desde la API
   ansible.builtin.uri:

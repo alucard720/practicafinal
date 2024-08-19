@@ -2,24 +2,10 @@
 - name: Trabajo de Practica Final (primera solucion)
   hosts: all
   become: true
-  tasks:
-    - name: Install necessary packages
-      ansible.builtin.apt:
-        name:
-          - python3-pip
-        update_cache: true
-        state: present
-
-    - name: Install requests module
-      ansible.builtin.pip:
-        name: requests
-        executable: pip3
 
   vars:
     server: https://random-data-api.com
     endpoint: /api/users/random_user?size=1
-    source_file2: partido_vars.yml
-    source_file: partido.txt
     dest_file: /home/vagrant/partido.txt
     dest_file2: /home/vagrant/segundo_tenista.txt
     first_name: Aitor
@@ -27,7 +13,7 @@
     city: Madrid
 
   vars_files:
-    - "{{ source_file2 }}"
+    - partido_vars.yml
 
   roles:
     - roles
